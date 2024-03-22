@@ -27,7 +27,7 @@ The new functionality performs the fTest in parallel for each analysis category:
 python RunBackgroundScripts_lite.py --inputConfig config_lite.py --mode fTest (--printOnly) (--modeOpts "string that sets different options in the python file")
 ```
 
-To debug the background modelling, one can set --gofCriteria 0.00 in the --modeOpts string.
+To debug the background modelling, one can set `"--gofCriteria 0.00"` in the --modeOpts string.
 
 Similar to the signal scripts the options are steered using an input config file e.g.:
 ```

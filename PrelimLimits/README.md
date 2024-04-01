@@ -4,8 +4,10 @@ This directory contains C++ files that were taken from a different framework mad
 You can find the code for producing these input histograms in the AnalysisTools directory of atsatsos97's flashgg repository. [TO BE COMMITTED SOON]
 
 To set up the framework:
-```cmsenv
-source setup.sh```
+```
+cmsenv
+source setup.sh
+```
 
 To create the datacards and workspaces from input histograms: `root -l makeCardsandWS.cpp`
 This will produce histograms with fits, datacards, and workspaces in the output directory.

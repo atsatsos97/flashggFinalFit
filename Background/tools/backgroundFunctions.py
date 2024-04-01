@@ -41,7 +41,7 @@ def getPdf(model,prefix,funcType,order):
     return ROOT.RooBernsteinFast(order)(prefix,prefix,model.xvar,paramList)
       
   # For Exponential
-  if funcType == "Exponential":
+  elif funcType == "Exponential":
     # Only odd orders allowed
     if order%2==0: return False
     else:

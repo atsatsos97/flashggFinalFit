@@ -37,9 +37,9 @@ def get_options():
   parser.add_option("--blindingRegion", dest='blindingRegion', default='115,135', help="Only fit function outside this region (unless running with --fitFullRange)")
   parser.add_option("--plotBlindingRegion", dest='plotBlindingRegion', default=None, help="Region to blind in plot. If None, will default to --blindingRegion")
   parser.add_option("--fitFullRange", dest='fitFullRange', default=False, action="store_true", help="Fit background pdfs over full range, including the blinding region")
-  parser.add_option("--maxOrder", dest='maxOrder', default=6, type='int', help="Max order of functions")
+  parser.add_option("--maxOrder", dest='maxOrder', default=10, type='int', help="Max order of functions")
   parser.add_option("--pvalFTest", dest='pvalFTest', default=0.05, type='float', help="p-value threshold to include higher order function in envelope")
-  parser.add_option("--gofCriteria", dest='gofCriteria', default=0.01, type='float', help="goodness-of-fit threshold to include function in envelope")
+  parser.add_option("--gofCriteria", dest='gofCriteria', default=0.05, type='float', help="goodness-of-fit threshold to include function in envelope")
   parser.add_option('--doPlots', dest='doPlots', default=False, action="store_true", help="Produce bkg fitting plots")
   parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
   parser.add_option('--nBinsOutput', dest='nBinsOutput', default=320, type='int', help="Number of bins for output WS")
@@ -101,8 +101,9 @@ print "\n --> Plotting envelope"
 #change directory
 tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots") # change these to where you want to store your plots
 tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s"%opt.year)
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim"%opt.year)
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim"%opt.year,_cat=opt.cat)
+tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim_0.907"%opt.year)
+tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim_0.907/0to20GeV"%opt.year)
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim_0.907/0to20GeV"%opt.year,_cat=opt.cat)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 

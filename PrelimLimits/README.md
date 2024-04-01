@@ -3,7 +3,7 @@ Preliminary Limit Estimations
 This directory contains C++ files that were taken from a different framework made for running sliding window limit estimates on input histograms.
 You can find the code for producing these input histograms in the AnalysisTools directory of atsatsos97's flashgg repository. [TO BE COMMITTED SOON]
 
-To set up the framework:
+To set up the framework in the flashggFinalFit directory:
 ```
 cmsenv
 source setup.sh

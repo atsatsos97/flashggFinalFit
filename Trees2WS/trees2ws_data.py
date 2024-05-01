@@ -48,7 +48,7 @@ def add_vars_to_workspace(mgg_range=(100,180),_ws=None,_dataVars=None):
   for var in _dataVars:
     if var == "CMS_hgg_mass":
       _vars[var] = ROOT.RooRealVar(var,var,mhl,mhl,mhh)
-      nbins = int((mhh-mhl)/0.25) #0.25 GeV intervals
+      nbins = int((mhh-mhl)/0.05) #50 MeV intervals
       _vars[var].setBins(nbins)
       #_vars[var].setBins(160)
     elif var == "dZ":
@@ -157,5 +157,5 @@ ws.Write()
 
 # Close file
 fout.Close()
-ws.Delete()
-fout.Delete()
+#ws.Delete()
+#fout.Delete()

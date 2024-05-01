@@ -7,6 +7,8 @@ import scipy.stats
 from scipy import linalg
 from collections import OrderedDict as od
 from array import array
+import ctypes
+
 
 from backgroundFunctions import *
 from fittingTools import *

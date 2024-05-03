@@ -41,6 +41,7 @@ if opt.inputConfig != '':
     options['ext']          = _cfg['ext']
     options['year']         = _cfg['year']
     options['lumi']         = lumiMap[_cfg['year']]
+    options['mass']         = _cfg['mass']
     options['batch']        = _cfg['batch']
     options['queue']        = _cfg['queue']
 
@@ -74,6 +75,7 @@ print " --> Input data file: %s"%options['inputWSFile']
 print " --> Categories: %s"%options['cats']
 print " --> Extension: %s"%options['ext']
 print " --> Year: %s ::: Corresponds to intLumi = %s fb^-1"%(options['year'],options['lumi'])
+print " --> Mass: %s"%options['mass']
 print ""
 print " --> Job information:"
 print "     * Batch: %s"%options['batch']

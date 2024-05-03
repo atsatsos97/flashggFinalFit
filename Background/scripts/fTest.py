@@ -34,6 +34,7 @@ def get_options():
   parser.add_option("--ext", dest='ext', default='', help="Extension")
   parser.add_option("--cat", dest='cat', default='', help="RECO category")
   parser.add_option("--year", dest='year', default='2016', help="Year. Use 'merged' for year-merged cat")
+  parser.add_option("--mass", dest='mass', default='10GeV', help="Mass in which ws directory is stored in")
   parser.add_option("--blindingRegion", dest='blindingRegion', default='115,135', help="Only fit function outside this region (unless running with --fitFullRange)")
   parser.add_option("--plotBlindingRegion", dest='plotBlindingRegion', default=None, help="Region to blind in plot. If None, will default to --blindingRegion")
   parser.add_option("--fitFullRange", dest='fitFullRange', default=False, action="store_true", help="Fit background pdfs over full range, including the blinding region")
@@ -99,10 +100,10 @@ else: model.buildNorm( norm, _extension="_%s_%s"%(opt.year,sqrts__))
 # Plotting
 print "\n --> Plotting envelope"
 #change directory
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots") # change these to where you want to store your plots
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s"%opt.year)
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim"%opt.year)
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_10_2_13/src/flashggFinalFit/Background/plots/%s/ParaNNPrelim"%opt.year,_cat=opt.cat)
+tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots") # change these to where you want to store your plots
+tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow")
+tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/%s"%opt.mass)
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/%s"%opt.mass,_cat=opt.cat)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 
@@ -110,8 +111,8 @@ plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch
 model.setNBins(opt.nBinsOutput)
 
 # Create output file and save model contents
-foutDir = "%s/outdir_%s/fTest/output"%(bwd__,opt.ext)
-foutName = "%s/outdir_%s/fTest/output/CMS-HGG_multipdf_%s.root"%(bwd__,opt.ext,opt.cat)
+foutDir = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/%s"%(bwd__,opt.ext,opt.mass)
+foutName = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/%s/CMS-HGG_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
 print "\n --> Saving output multipdf to file: %s"%foutName
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")

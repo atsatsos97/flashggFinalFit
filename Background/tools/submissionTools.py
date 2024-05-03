@@ -83,7 +83,7 @@ def writeSubFiles(_opts):
         c = _opts['cats'].split(",")[cidx]
         _f = open("%s/%s_%s.sh"%(_jobdir,_executable,c),"w")
         writePreamble(_f)
-        _cmd = "python %s/scripts/fTest.py --inputWSFile %s --cat %s --ext %s --year %s %s"%(bwd__,_opts['inputWSFile'],c,_opts['ext'],_opts['year'],_opts['modeOpts'])
+        _cmd = "python %s/scripts/fTest.py --inputWSFile %s --cat %s --ext %s --year %s --mass %s %s"%(bwd__,_opts['inputWSFile'],c,_opts['ext'],_opts['year'],_opts['mass'],_opts['modeOpts'])
         _f.write("%s\n"%_cmd)
         _f.close()
         os.system("chmod 775 %s/%s_%s.sh"%(_jobdir,_executable,c))

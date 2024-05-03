@@ -440,6 +440,7 @@ class modelBuilder:
 
     # Create RooMultiPdf
     self.multipdf = ROOT.RooMultiPdf("CMS_hgg_%s%s_bkgshape"%(self.cat,_extension),"Envelope",self.pdfIndex,pdflist)
+    self.multipdf.setCorrectionFactor(0.01)
 
 
   # Function to calculate the best-fit bkg model function and set at nominal function in envelope

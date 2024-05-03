@@ -139,8 +139,10 @@ for cat in cats:
 
   # Loop over events in tree and add to dataset with weight 1
   for ev in t:
-    #only include events in mgg range, blind data, reject events not in Class 0
+    #5% data
     if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%20 != 0) or (ev.NNScore < opt.asimov): continue 
+    #10% data
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < opt.asimov): continue 
     #unblinding
 #    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < opt.asimov): continue 
 

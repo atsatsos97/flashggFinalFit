@@ -71,8 +71,8 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
     hists[k].Draw("Same HIST")
 
   # Add legend
-  height_per_pdf = 0.2/4
-  leg = ROOT.TLegend(0.56,0.8-height_per_pdf*(len(pdfs)+1),0.86,0.8)
+  height_per_pdf = 0.15/4
+  leg = ROOT.TLegend(0.56,0.7-height_per_pdf*(len(pdfs)+1),0.86,0.7)
   leg.SetFillStyle(0)
   leg.SetLineColor(0)
   leg.SetTextSize(0.04)
@@ -88,7 +88,7 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
   lat.SetTextAlign(31)
   lat.SetNDC()
   lat.SetTextSize(0.035)
-  lat.DrawLatex(0.9,0.92,"2.72 fb^{-1} (13 TeV)")
+  lat.DrawLatex(0.9,0.92,"5.44 fb^{-1} (13 TeV)")
   lat1 = ROOT.TLatex()
   lat1.SetTextFont(42)
   lat1.SetTextAlign(11)

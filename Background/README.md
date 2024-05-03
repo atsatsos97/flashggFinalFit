@@ -27,7 +27,7 @@ The new functionality performs the fTest in parallel for each analysis category:
 python RunBackgroundScripts_lite.py --inputConfig config_lite.py --mode fTest (--printOnly) (--modeOpts "string that sets different options in the python file")
 ```
 
-To debug the background modelling, one can set `"--gofCriteria 0.00"` in the --modeOpts string.
+To debug the background modelling, one can set `"--gofCriteria 0.00"` in the --modeOpts string. A shell script has been made which runs through all of the sliding window F-tests, using the various configuration files in the `SlidingWindowConfigs` directory.
 
 Similar to the signal scripts the options are steered using an input config file e.g.:
 ```
@@ -39,6 +39,7 @@ backgroundScriptCfg = {
   'catOffset':0, # add offset to category numbers (useful for categories from different allData.root files)  
   'ext':'test', # extension to add to output directory
   'year':'combined', # Use combined when merging all years in category (for plots)
+  'mass':'GeV' # mass used in sliding window configs
 
   # Job submission options
   'batch':'IC', # [condor,SGE,IC,local]
@@ -46,6 +47,8 @@ backgroundScriptCfg = {
 
 }
 ```
+
+An additional `mass` option has been added to the configuration files and scripts in order to accommodate the storage needed for different sliding mass windows. Full mass range can also be used. You can find the most recently used configurations in the `SlidingWindowConfigs` directory.
 
 The output is a ROOT file containing the `RooMultiPdf`'s for each analysis category in `outdir_{ext}`. These are your background models (which must be copied across to the `Combine` directory when you get to the final fits step). In addition the standard fTest plots are produced in the `outdir_{ext}/bkgfTest-Data` directory, where the numbering matches the `catOffset` for each category (see the submission scripts).
 

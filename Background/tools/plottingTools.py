@@ -12,7 +12,7 @@ def Translate(name, ndict):
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Signal fit plots
 # Plot final pdf at MH = 125 (with data) + individual Pdf components
-def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600,_dataNBins=80,setLogY=False):
+def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600,_dataNBins=80,_massh='10GeV',setLogY=False):
   canv = ROOT.TCanvas()
   canv.SetLeftMargin(0.15)
   if setLogY: canv.SetLogy()
@@ -72,7 +72,7 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
 
   # Add legend
   height_per_pdf = 0.15/4
-  leg = ROOT.TLegend(0.56,0.7-height_per_pdf*(len(pdfs)+1),0.86,0.7)
+  leg = ROOT.TLegend(0.56,0.5-height_per_pdf*(len(pdfs)+1),0.86,0.5)
   leg.SetFillStyle(0)
   leg.SetLineColor(0)
   leg.SetTextSize(0.04)
@@ -98,8 +98,8 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
 
   canv.Update()
   if setLogY:
-    canv.SaveAs("%s/bkgmodel_pdfs_%s_log.png"%(_outdir,_cat))
-    canv.SaveAs("%s/bkgmodel_pdfs_%s_log.pdf"%(_outdir,_cat))
+    canv.SaveAs("%s/bkgmodel_pdfs_%s_%s_log.png"%(_outdir,_cat,_massh))
+    canv.SaveAs("%s/bkgmodel_pdfs_%s_%s_log.pdf"%(_outdir,_cat,_massh))
   else:
-    canv.SaveAs("%s/bkgmodel_pdfs_%s.png"%(_outdir,_cat))
-    canv.SaveAs("%s/bkgmodel_pdfs_%s.pdf"%(_outdir,_cat))
+    canv.SaveAs("%s/bkgmodel_pdfs_%s_%s.png"%(_outdir,_cat,_massh))
+    canv.SaveAs("%s/bkgmodel_pdfs_%s_%s.pdf"%(_outdir,_cat,_massh))

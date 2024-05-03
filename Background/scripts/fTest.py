@@ -102,8 +102,8 @@ print "\n --> Plotting envelope"
 #change directory
 tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots") # change these to where you want to store your plots
 tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow")
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/%s"%opt.mass)
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/%s"%opt.mass,_cat=opt.cat)
+
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 
@@ -111,8 +111,8 @@ plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch
 model.setNBins(opt.nBinsOutput)
 
 # Create output file and save model contents
-foutDir = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/%s"%(bwd__,opt.ext,opt.mass)
-foutName = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/%s/CMS-HGG_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
+foutDir = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow"%(bwd__,opt.ext)
+foutName = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/CMS-HGG_%s_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
 print "\n --> Saving output multipdf to file: %s"%foutName
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")

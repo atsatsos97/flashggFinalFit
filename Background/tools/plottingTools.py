@@ -71,14 +71,16 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
     hists[k].Draw("Same HIST")
 
   # Add legend
-  height_per_pdf = 0.15/4
-  leg = ROOT.TLegend(0.56,0.5-height_per_pdf*(len(pdfs)+1),0.86,0.5)
+  height_per_pdf = 0.12/4
+  if (_cat=="UntaggedTag_0"): leg = ROOT.TLegend(0.53,0.85-height_per_pdf*(len(pdfs)+1),0.85,0.85)
+  else: leg = ROOT.TLegend(0.53,0.3-height_per_pdf*(len(pdfs)+1),0.85,0.3)
   leg.SetFillStyle(0)
   leg.SetLineColor(0)
-  leg.SetTextSize(0.04)
+  leg.SetTextSize(0.035)
   leg.AddEntry(hists['data'],"Data","ep")
-  for k in pdfs:
-    ktitle = "(%s,%s)"%(k[0],k[1])
+  for k,v in pdfs.iteritems():
+    gof = round(ROOT.TMath.Prob(v['NLL']*2.0,v['Ndof']),3)
+    ktitle = "(%s,%s) GOF = %s"%(k[0],k[1],gof)
     leg.AddEntry(hists[k],ktitle,"L")
   leg.Draw("Same")
 
@@ -89,6 +91,7 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
   lat.SetNDC()
   lat.SetTextSize(0.035)
   lat.DrawLatex(0.9,0.92,"5.44 fb^{-1} (13 TeV)")
+#  lat.DrawLatex(0.9,0.92,"54.4 fb^{-1} (13 TeV)")
   lat1 = ROOT.TLatex()
   lat1.SetTextFont(42)
   lat1.SetTextAlign(11)

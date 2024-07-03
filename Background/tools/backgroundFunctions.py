@@ -19,8 +19,8 @@ functionFamilies['PowerLaw'] = od()
 functionFamilies['PowerLaw']['name'] = ['PowerLaw','pow']
 
 # Laurent series
-functionFamilies['Laurent'] = od()
-functionFamilies['Laurent']['name'] = ['Laurent','lau']
+#functionFamilies['Laurent'] = od()
+#functionFamilies['Laurent']['name'] = ['Laurent','lau']
 
 
 # Define function families
@@ -44,6 +44,8 @@ def getPdf(model,prefix,funcType,order):
   elif funcType == "Exponential":
     # Only odd orders allowed
     if order%2==0: return False
+    # exp1 only
+    elif order>=3: return False
     else:
       nFracs = (order-1)/2
       nExps = order-nFracs
@@ -57,7 +59,8 @@ def getPdf(model,prefix,funcType,order):
       for i in range(1,nExps+1):
         pname = "%s_p%g"%(prefix,i)
         funcname = "%s_e%g"%(prefix,i)
-        model.params[pname] = ROOT.RooRealVar(pname,pname,max(-1.,-0.04*(i+1)),-1.,0.)
+#        model.params[pname] = ROOT.RooRealVar(pname,pname,max(-1.,-0.04*(i+1)),-1.,0.)
+        model.params[pname] = ROOT.RooRealVar(pname,pname,max(-1.,-0.04*(i+1)),-1.,1.)
         model.functions[funcname] = ROOT.RooExponential(funcname,funcname,model.xvar,model.params[pname])
         exps.add(model.functions[funcname])
       # Add up exponentials
@@ -67,6 +70,8 @@ def getPdf(model,prefix,funcType,order):
   elif funcType == "PowerLaw":
     # Only odd orders allowed
     if order%2==0: return False
+    # pow1 only
+    elif order>=3: return False
     else:
       nFracs = (order-1)/2
       nPows = order-nFracs

@@ -40,7 +40,7 @@ def get_options():
   parser.add_option("--fitFullRange", dest='fitFullRange', default=False, action="store_true", help="Fit background pdfs over full range, including the blinding region")
   parser.add_option("--maxOrder", dest='maxOrder', default=6, type='int', help="Max order of functions")
   parser.add_option("--pvalFTest", dest='pvalFTest', default=0.05, type='float', help="p-value threshold to include higher order function in envelope")
-  parser.add_option("--gofCriteria", dest='gofCriteria', default=0.01, type='float', help="goodness-of-fit threshold to include function in envelope")
+  parser.add_option("--gofCriteria", dest='gofCriteria', default=0.05, type='float', help="goodness-of-fit threshold to include function in envelope")
   parser.add_option('--doPlots', dest='doPlots', default=False, action="store_true", help="Produce bkg fitting plots")
   parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
   parser.add_option('--nBinsOutput', dest='nBinsOutput', default=320, type='int', help="Number of bins for output WS")
@@ -100,19 +100,18 @@ else: model.buildNorm( norm, _extension="_%s_%s"%(opt.year,sqrts__))
 # Plotting
 print "\n --> Plotting envelope"
 #change directory
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots") # change these to where you want to store your plots
-tryMake("/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow")
+tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_SlidingWindow_SigExt_vEnv")
 
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/plots/NN0.78_10pData5pWindow/",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_SlidingWindow_SigExt_vEnv",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 
 # Set nBins for output
-model.setNBins(opt.nBinsOutput)
+model.setNBins(opt.nBins)
 
 # Create output file and save model contents
-foutDir = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow"%(bwd__,opt.ext)
-foutName = "%s/outdir_%s/fTest/output/NN0.78_10pData5pWindow/CMS-HGG_%s_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
+foutDir = "%s/outdir_%s/fTest/output/10pData_4Cat_SlidingWindow_SigExt_vEnv"%(bwd__,opt.ext)
+foutName = "%s/outdir_%s/fTest/output/10pData_4Cat_SlidingWindow_SigExt_vEnv/CMS-HGG_%s_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
 print "\n --> Saving output multipdf to file: %s"%foutName
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")

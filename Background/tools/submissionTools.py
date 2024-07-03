@@ -23,6 +23,7 @@ def writeCondorSub(_file,_exec,_queue,_nJobs,_jobOpts,doHoldOnFailure=True,doPer
   _file.write("arguments  = $(ProcId)\n")
   _file.write("output     = %s.$(ClusterId).$(ProcId).out\n"%_exec)
   _file.write("error      = %s.$(ClusterId).$(ProcId).err\n\n"%_exec)
+  #_file.write('MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n')
   if _jobOpts != '':
     _file.write("# User specified job options\n")
     for jo in _jobOpts.split(":"): _file.write("%s\n"%jo)
@@ -58,7 +59,7 @@ def writeSubFiles(_opts):
       for cidx in range(_opts['nCats']):
         c = _opts['cats'].split(",")[cidx]
         _f.write("if [ $1 -eq %g ]; then\n"%cidx)
-        _cmd = "  python %s/scripts/fTest.py --inputWSFile %s --cat %s --ext %s --year %s %s"%(bwd__,_opts['inputWSFile'],c,_opts['ext'],_opts['year'],_opts['modeOpts'])
+        _cmd = "python %s/scripts/fTest.py --inputWSFile %s --cat %s --ext %s --year %s --mass %s %s"%(bwd__,_opts['inputWSFile'],c,_opts['ext'],_opts['year'],_opts['mass'],_opts['modeOpts'])
         _f.write("  %s\n"%_cmd)
         _f.write("fi\n")
       

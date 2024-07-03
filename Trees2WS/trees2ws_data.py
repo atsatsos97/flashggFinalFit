@@ -12,7 +12,7 @@ def get_options():
   parser.add_option('--inputTreeFile',dest='inputTreeFile', default=None, help='Input tree file')
   parser.add_option('--outputWSDir',dest='outputWSDir', default=None, help='Output dir (default is same as input dir)')
   parser.add_option('--mgg-range',dest="mgg_range", nargs=2, default=(100.0,180.0), type=float, help="Range of (mgg allowed in trees")
-  parser.add_option('--asimov',dest="asimov", default=-1.0, type=float, help="Boundary set for Class 0 (temporary)")
+  parser.add_option('--asimov',dest="asimov", default=0.0, type=float, help="Boundary set for Class 0 (temporary)")
   return parser.parse_args()
 (opt,args) = get_options()
 
@@ -140,11 +140,11 @@ for cat in cats:
   # Loop over events in tree and add to dataset with weight 1
   for ev in t:
     #5% data
-    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%20 != 0) or (ev.NNScore < opt.asimov): continue 
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%20 != 0) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
     #10% data
-#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < opt.asimov): continue 
-    #unblinding
-#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < opt.asimov): continue 
+    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
+    #all data (unblinding)
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
 
     for var in dataVars: 
       if var == "weight": continue

@@ -11,7 +11,8 @@ def get_options():
   parser.add_option('--inputConfig',dest='inputConfig', default="", help='Input config: specify list of variables/analysis categories')
   parser.add_option('--inputTreeFile',dest='inputTreeFile', default=None, help='Input tree file')
   parser.add_option('--outputWSDir',dest='outputWSDir', default=None, help='Output dir (default is same as input dir)')
-  parser.add_option('--mgg-range',dest="mgg_range", nargs=2, default=(100.0,180.0), type=float, help="Range of (mgg allowed in trees")
+  parser.add_option('--mass',dest="mass", default='', help="mgg at center of mass window and to put in file name")
+  parser.add_option('--mgg-range',dest="mgg_range", nargs=2, default=(100.0,180.0), type=float, help="Range of mgg allowed in trees")
   parser.add_option('--asimov',dest="asimov", default=0.0, type=float, help="Boundary set for Class 0 (temporary)")
   return parser.parse_args()
 (opt,args) = get_options()
@@ -112,7 +113,7 @@ f = ROOT.TFile(opt.inputTreeFile)
 if opt.outputWSDir is not None: outputWSDir = opt.outputWSDir+"/ws"
 else: outputWSDir = "/".join(opt.inputTreeFile.split("/")[:-1])+"/ws"
 if not os.path.exists(outputWSDir): os.system("mkdir %s"%outputWSDir)
-outputWSFile = outputWSDir+"/"+opt.inputTreeFile.split("/")[-1]
+outputWSFile = outputWSDir+"/"+opt.mass+"_"+opt.inputTreeFile.split("/")[-1]
 print " --> Creating output workspace: (%s)"%outputWSFile
 fout = ROOT.TFile(outputWSFile,"RECREATE")
 foutdir = fout.mkdir(inputWSName__.split("/")[0])
@@ -142,9 +143,13 @@ for cat in cats:
     #5% data
 #    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%20 != 0) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
     #10% data
-    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
     #all data (unblinding)
-#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
+    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < opt.asimov) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
+    #all data, reduced cat3
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.NNScore < 0.3) or (ev.NNScore > 0.45) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
+    #10% data, reduced cat3
+#    if (ev.CMS_hgg_mass < opt.mgg_range[0]) or (ev.CMS_hgg_mass > opt.mgg_range[1]) or (ev.event%10 != 0) or (ev.NNScore < 0.3) or (ev.NNScore > 0.45) or (min(ev.dipho_leadIDMVA,ev.dipho_subleadIDMVA)<-0.7): continue 
 
     for var in dataVars: 
       if var == "weight": continue

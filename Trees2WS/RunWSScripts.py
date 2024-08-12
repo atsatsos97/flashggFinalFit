@@ -15,8 +15,9 @@ def get_options():
   # Take inputs from config file
   parser.add_option('--inputDir', dest='inputDir', default='', help="Path to input trees (for trees2ws + hadding) orpath to input workspaces (for mass_shift)")
   parser.add_option('--inputConfig', dest='inputConfig', default='', help="Name of input config file for trees2ws/trees2ws_data")
-  parser.add_option('--ext', dest='ext', default='test_2016', help="Extension to add to output jobs dir")
-  parser.add_option('--year', dest='year', default='2016', help="Year of trees to process")
+  parser.add_option('--ext', dest='ext', default='lite', help="Extension to add to output jobs dir")
+  parser.add_option('--year', dest='year', default='2018', help="Year of trees to process")
+  parser.add_option('--mass', dest='mass', default='', help="Mass used for center of mass window")
   parser.add_option('--mode', dest='mode', default='', help="Which mode to run. Options: ['trees2ws','trees2ws_data','haddMC','haddData','mass_shift']")
   parser.add_option('--modeOpts', dest='modeOpts', default='', help="Additional options to add to command line when running different scripts (specify all within quotes e.g. \"--XYZ ABC\")")
   # Specifically for hadding
@@ -26,8 +27,8 @@ def get_options():
   parser.add_option('--inputMass', dest='inputMass', default='125', help="Input mass of workspace")
   parser.add_option('--targetMasses', dest='targetMasses', default='120,130', help="Comma separated list of target masses")
   # Job submission options
-  parser.add_option('--batch', dest='batch', default='IC', help='Batch')
-  parser.add_option('--queue', dest='queue', default='hep.q', help='Queue: can take a while if including all systematics for many categories')
+  parser.add_option('--batch', dest='batch', default='condor', help='Batch')
+  parser.add_option('--queue', dest='queue', default='microcentury', help='Queue: can take a while if including all systematics for many categories')
   parser.add_option('--jobOpts', dest='jobOpts', default='', help="Additional options to add to job submission. For Condor separate individual options with a colon (specify all within quotes e.g. \"option_xyz = abc+option_123 = 456\")")
   parser.add_option('--printOnly', dest='printOnly', default=False, action="store_true", help="Dry run: print submission files only")
   return parser.parse_args()
@@ -45,6 +46,7 @@ options['inputDir']    = opt.inputDir
 options['inputConfig'] = opt.inputConfig
 options['ext']         = opt.ext
 options['year']        = opt.year
+options['mass']        = opt.mass
 options['mode']        = opt.mode
 options['modeOpts']    = opt.modeOpts
 options['flashggPath'] = opt.flashggPath

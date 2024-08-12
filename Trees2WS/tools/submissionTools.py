@@ -25,6 +25,8 @@ def writeCondorSub(_file,_exec,_queue,_nJobs,_jobOpts,doHoldOnFailure=True,doPer
   _file.write("arguments  = $(ProcId)\n")
   _file.write("output     = %s.$(ClusterId).$(ProcId).out\n"%_exec)
   _file.write("error      = %s.$(ClusterId).$(ProcId).err\n\n"%_exec)
+  #_file.write('MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n')
+  _file.write("MY.WantOS  = 'el7'\n")
   if _jobOpts != '':
     _file.write("# User specified job options\n")
     for jo in _jobOpts.split(":"): _file.write("%s\n"%jo)
@@ -47,11 +49,11 @@ def writeSubFiles(_opts):
 
   _jobdir = "%s/outdir_%s/%s/jobs"%(twd__,_opts['ext'],_opts['mode'])
   # Remove current job files
-  if len(glob.glob("%s/*"%_jobdir)): os.system("rm %s/*"%_jobdir)
+#  if len(glob.glob("%s/*"%_jobdir)): os.system("rm %s/*"%_jobdir)
   
   # CONDOR
   if _opts['batch'] == "condor":
-    _executable = "condor_%s_%s"%(_opts['mode'],_opts['ext'])
+    _executable = "condor_%s_%s_%s"%(_opts['mode'],_opts['ext'],_opts['mass'])
     _f = open("%s/%s.sh"%(_jobdir,_executable),"w") # single .sh script split into separate jobs
     writePreamble(_f)
 
@@ -72,10 +74,11 @@ def writeSubFiles(_opts):
          
     elif( _opts['mode'] == "trees2ws_data" ):
       # Extract list of files
-      tfiles = glob.glob("%s/*.root"%_opts['inputDir'])
+#      tfiles = glob.glob("%s/*.root"%_opts['inputDir'])
+      tfiles = glob.glob("%s/all2018data.root"%_opts['inputDir'])
       # Run separate command per file
       for tfidx,tf in enumerate(tfiles):
-        _cmd = "python %s/trees2ws_data.py --inputConfig %s --inputTreeFile %s"%(twd__,_opts['inputConfig'],tf)
+        _cmd = "python %s/trees2ws_data.py --inputConfig %s --inputTreeFile %s --mass %s"%(twd__,_opts['inputConfig'],tf,_opts['mass'])
         if _opts['modeOpts'] != '': _cmd += " %s"%_opts['modeOpts']
         _f.write("if [ $1 -eq %g ]; then\n"%tfidx)
         _f.write(" %s\n"%_cmd)
@@ -205,7 +208,7 @@ def submitFiles(_opts):
   _jobdir = "%s/outdir_%s/%s/jobs"%(twd__,_opts['ext'],_opts['mode'])
   # CONDOR
   if _opts['batch'] == "condor":
-    _executable = "condor_%s_%s"%(_opts['mode'],_opts['ext'])
+    _executable = "condor_%s_%s_%s"%(_opts['mode'],_opts['ext'],_opts['mass'])
     cmdLine = "cd %s; condor_submit %s.sub; cd %s"%(_jobdir,_executable,twd__)
     run(cmdLine)
     print "  --> Finished submitting files"

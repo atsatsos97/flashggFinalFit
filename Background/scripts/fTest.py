@@ -43,6 +43,7 @@ def get_options():
   parser.add_option("--gofCriteria", dest='gofCriteria', default=0.05, type='float', help="goodness-of-fit threshold to include function in envelope")
   parser.add_option('--doPlots', dest='doPlots', default=False, action="store_true", help="Produce bkg fitting plots")
   parser.add_option('--nBins', dest='nBins', default=80, type='int', help="Number of bins for fit")
+  parser.add_option('--nBinsPdf', dest='nBinsPdf', default=1600, type='int', help="Number of bins for fit")
   parser.add_option('--nBinsOutput', dest='nBinsOutput', default=320, type='int', help="Number of bins for output WS")
   # Minimizer options
   parser.add_option('--minimizerMethod', dest='minimizerMethod', default='TNC', help="(Scipy) Minimizer method")
@@ -100,9 +101,12 @@ else: model.buildNorm( norm, _extension="_%s_%s"%(opt.year,sqrts__))
 # Plotting
 print "\n --> Plotting envelope"
 #change directory
-tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_SlidingWindow_SigExt_vEnv")
+#tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_PiecewiseWindow_SigExt_vBern4Env")
+tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt_v2/PiecewisePlotTest_bern4_v2/")
 
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_SlidingWindow_SigExt_vEnv",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
+#plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_PiecewiseWindow_SigExt_vBern4Env",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
+
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt_v2/PiecewisePlotTest_bern4_v2/",_cat=opt.cat,_pdfNBins=opt.nBinsPdf,_dataNBins=opt.nBins,_massh=opt.mass)
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 
@@ -110,8 +114,10 @@ plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/
 model.setNBins(opt.nBins)
 
 # Create output file and save model contents
-foutDir = "%s/outdir_%s/fTest/output/10pData_4Cat_SlidingWindow_SigExt_vEnv"%(bwd__,opt.ext)
-foutName = "%s/outdir_%s/fTest/output/10pData_4Cat_SlidingWindow_SigExt_vEnv/CMS-HGG_%s_multipdf_%s.root"%(bwd__,opt.ext,opt.mass,opt.cat)
+#foutDir = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/JUL2024FITWS_SIGEXT/output/10pData_PiecewiseWindow_Bern4"
+#foutName = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/JUL2024FITWS_SIGEXT/output/10pData_PiecewiseWindow_Bern4/CMS-HGG_%s_multipdf_%s.root"%(opt.mass,opt.cat)
+foutDir = "/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/outdir_lite/fTest/output/PiecewisePlotTest_bern4_v2/"
+foutName = "/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/outdir_lite/fTest/output/PiecewisePlotTest_bern4_v2/CMS-HGG_%s_multipdf_%s.root"%(opt.mass,opt.cat)
 print "\n --> Saving output multipdf to file: %s"%foutName
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")

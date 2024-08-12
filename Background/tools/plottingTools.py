@@ -55,7 +55,7 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
   hmax = hists['data'].GetMaximum()
   hmin = hists['data'].GetMinimum()
 
-  # Draw histograms
+  # Draw histograms and save them
   hists['data'].SetMaximum(1.2*hmax)
   if setLogY:
     min_vals = []
@@ -65,15 +65,18 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
   else:
     hists['data'].SetMinimum(0)
   hists['data'].Draw("PE")
+  hists['data'].SaveAs("data_%s_%s.root"%(_cat,_massh))
   for k,v in pdfs.iteritems():
     # Scale pdf histograms
     hists[k].Scale(v['norm']*(float(_pdfNBins)/_dataNBins))
     hists[k].Draw("Same HIST")
+    hists[k].SaveAs("pdfs_%s_%s_%s%s.root"%(_cat,_massh,k[0],k[1]))
 
   # Add legend
   height_per_pdf = 0.12/4
-  if (_cat=="UntaggedTag_0"): leg = ROOT.TLegend(0.53,0.85-height_per_pdf*(len(pdfs)+1),0.85,0.85)
-  else: leg = ROOT.TLegend(0.53,0.3-height_per_pdf*(len(pdfs)+1),0.85,0.3)
+  #if (_cat=="UntaggedTag_0"): leg = ROOT.TLegend(0.53,0.88-height_per_pdf*(len(pdfs)+1),0.85,0.88)
+  #else: leg = ROOT.TLegend(0.53,0.33-height_per_pdf*(len(pdfs)+1),0.85,0.33)
+  leg = ROOT.TLegend(0.53,0.3-height_per_pdf*(len(pdfs)+1),0.85,0.3)
   leg.SetFillStyle(0)
   leg.SetLineColor(0)
   leg.SetTextSize(0.035)
@@ -90,8 +93,8 @@ def plotPdfMap(model,pdfs,plotBlindingRegion,_outdir='./',_cat='',_pdfNBins=1600
   lat.SetTextAlign(31)
   lat.SetNDC()
   lat.SetTextSize(0.035)
-  lat.DrawLatex(0.9,0.92,"5.44 fb^{-1} (13 TeV)")
-#  lat.DrawLatex(0.9,0.92,"54.4 fb^{-1} (13 TeV)")
+  #lat.DrawLatex(0.9,0.92,"5.44 fb^{-1} (13 TeV)")
+  lat.DrawLatex(0.9,0.92,"54.4 fb^{-1} (13 TeV)")
   lat1 = ROOT.TLatex()
   lat1.SetTextFont(42)
   lat1.SetTextAlign(11)

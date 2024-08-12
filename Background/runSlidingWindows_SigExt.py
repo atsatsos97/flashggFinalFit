@@ -5,15 +5,14 @@ import os
 
 # Define paths
 # Put shell script lines here
-executable_template = """python RunBackgroundScripts_lite.py --inputConfig SlidingWindowConfigs_1GeV/config_{mass}.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.01 --maxOrder 3 --nBins {nbins}"
+executable_template = """python RunBackgroundScripts_lite.py --inputConfig SlidingWindowConfigs_SigExt_AllData_HighGran/config_{mass}.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.01 --maxOrder 3 --nBins {nbins}"
 """
 
 # Generate executable script and run it
-for mass in range(10,71):
-    nbins=4*mass
+for m in range(100,701):
+    mass = m/10.0
+    nbins=int(4*mass)
 
     # Write executable
-    with open("./runSlidingWindows_SigExt.sh", "a") as f:
+    with open("./runSlidingWindows_SigExt_highgran.sh", "a") as f:
         f.write(executable_template.format(mass=mass, nbins=nbins))
-
-    print mass," is done"

@@ -1,9 +1,8 @@
 import shutil
 import fileinput
 
-for m in range(100,701):
-  ma = m/10.0
-  mass = str(ma)
+for m in range(11,71):
+  mass = str(m)
   shutil.copy('config_10.py', 'config_'+mass+'.py')
 
   f = fileinput.input('config_'+mass+'.py', inplace=True)

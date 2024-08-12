@@ -67,6 +67,10 @@ This will submit a separate job per input tree file in the specified path. Use t
 
 This script also supports running over multiple data input tree files. Simply change the `--inputDir` to the path to the input data trees and use `--mode trees2ws_data`.
 
+## Provided python scripts
+
+The `runTreetoWS_*.py` scripts are used to create shell scripts for running the tree to workspace conversions locally or using condor, as well as for any amount of mass points with any granularity. Several `runTreetoWS_*.sh` have been made in this way. Be sure to change the output directory to where you would like to store your produced workspace. The high granularity scripts are still a work in progress, as running 601 jobs on the same input tree leads to some unfinished workspaces.
+
 ## Hadding the output
 
 If you have multiple output workspaces per signal process then you can hadd them together to get a single workspace per signal process. This is again steered with `RunWSScripts.py`. For this you will need to have/setup a working (and compiled) flashgg area.

@@ -12,19 +12,13 @@ fulldatahist = TH1F("fulldatahist","fulldatahist",1320,9,75)
 fullpdfhist = TH1F("fullpdfhist","fullpdfhist",52800,9,75)
 data_hist = TH1F()
 
-masslist =[11,13,15,18,22,26,31,37,45,55,67]
-#norms = [563,751,787,797,888,931,999,1327,1824,2558,2957]
-
+masslist = [11,13,15,18,22,26,31,37,45,55,67]
+fitlist = ["Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2","Bernstein2"]
 
 for win in range(1,12):
-    pdf_file = TFile("pdfs_UntaggedTag_"+str(cat)+"_Window"+str(win)+"_Bernstein2.root","READ")
+    pdf_file = TFile("pdfs_UntaggedTag_"+str(cat)+"_Window"+str(win)+"_"+fitlist[win-1]+".root","READ")
     pdf_hist = pdf_file.Get("h_pdf__Bernstein_2__CMS_hgg_mass")
-#    tempmin = pdf_hist_temp.GetXaxis().GetXmin()
-#    tempmax = pdf_hist_temp.GetXaxis().GetXmax()
-#    print tempmin,tempmax
     print(pdf_hist.GetMaximum())
-#    pdf_hist = TH1F("pdf_hist","pdf_hist",52800,9,75)
-#    pdf_hist.Add(pdf_hist_temp)
     fullpdfhist.Add(pdf_hist)
 
 for win in range(1,12):
@@ -41,9 +35,6 @@ fulldatahist.SetLineColor(1)
 fulldatahist.Draw("epsame")
 
 fullpdfhist.SetMinimum(0)
-#fullpdfhist.Scale(1.0/40.0)
-#fullpdfhist.SetMarkerStyle(20)
-#fullpdfhist.SetMarkerColor(3)
 fullpdfhist.SetLineColor(3)
 fullpdfhist.Draw("hist same")
 

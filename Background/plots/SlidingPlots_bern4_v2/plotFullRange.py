@@ -3,7 +3,7 @@ import json
 from collections import OrderedDict as od
 from commonObjects import *
 
-cat=0
+cat=1
 
 gStyle.SetOptStat(0)
 gStyle.SetOptTitle(0)
@@ -16,7 +16,7 @@ fullpdfhist1 = TH1F("fullpdfhist1","fullpdfhist1",52800,9,75)
 fullpdfhist2 = TH1F("fullpdfhist2","fullpdfhist2",52800,9,75)
 
 masslist = [11,13,15,18,22,26,31,37,45,55,67]
-fitlist = ["PowerLaw1","PowerLaw1","Bernstein2","PowerLaw1","PowerLaw1","Bernstein2","Bernstein3","Exponential1","Exponential1","Bernstein3","Bernstein2"]
+fitlist = ["Exponential1","Bernstein4","Bernstein2","Bernstein3","Bernstein2","Bernstein4","Bernstein2","Exponential1","Bernstein4","Bernstein3","Bernstein4"]
 
 for i in range(0,11):
     if(i%2==0):

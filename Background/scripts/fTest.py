@@ -101,12 +101,9 @@ else: model.buildNorm( norm, _extension="_%s_%s"%(opt.year,sqrts__))
 # Plotting
 print "\n --> Plotting envelope"
 #change directory
-#tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_PiecewiseWindow_SigExt_vBern4Env")
-tryMake("/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt_v2/PiecewisePlotTest_bern4_v2/")
+tryMake("/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/") #Change output directory to personal area
 
-#plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt/10pData_4Cat_PiecewiseWindow_SigExt_vBern4Env",_cat=opt.cat,_pdfNBins=1600,_dataNBins=opt.nBins,_massh=opt.mass)
-
-plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/JUL2024FinalFits_SigExt_v2/PiecewisePlotTest_bern4_v2/",_cat=opt.cat,_pdfNBins=opt.nBinsPdf,_dataNBins=opt.nBins,_massh=opt.mass)
+plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/",_cat=opt.cat,_pdfNBins=opt.nBinsPdf,_dataNBins=opt.nBins,_massh=opt.mass) #Change output directory to personal area
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # SAVE: to output workspace
 
@@ -114,10 +111,8 @@ plotPdfMap(model,model.envelopePdfs,opt.plotBlindingRegion,_outdir="/eos/user/a/
 model.setNBins(opt.nBins)
 
 # Create output file and save model contents
-#foutDir = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/JUL2024FITWS_SIGEXT/output/10pData_PiecewiseWindow_Bern4"
-#foutName = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/JUL2024FITWS_SIGEXT/output/10pData_PiecewiseWindow_Bern4/CMS-HGG_%s_multipdf_%s.root"%(opt.mass,opt.cat)
-foutDir = "/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/outdir_lite/fTest/output/PiecewisePlotTest_bern4_v2/"
-foutName = "/afs/cern.ch/work/a/atsatsos/ULLowmassFGG/CMSSW_11_3_4/src/flashggFinalFit/Background/outdir_lite/fTest/output/PiecewisePlotTest_bern4_v2/CMS-HGG_%s_multipdf_%s.root"%(opt.mass,opt.cat)
+foutDir = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/SEP2024FITWS_SIGEXT/output/AllData_SubRange_Envelope/" #Change output directory to personal area
+foutName = "/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/SEP2024FITWS_SIGEXT/output/AllData_SubRange_Envelope/CMS-HGG_%s_multipdf_%s.root"%(opt.mass,opt.cat) #Change output directory to personal area
 print "\n --> Saving output multipdf to file: %s"%foutName
 if not os.path.isdir(foutDir): os.system("mkdir %s"%foutDir)
 fout = ROOT.TFile(foutName,"RECREATE")

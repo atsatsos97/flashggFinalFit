@@ -44,8 +44,8 @@ def getPdf(model,prefix,funcType,order):
   elif funcType == "Exponential":
     # Only odd orders allowed
     if order%2==0: return False
-    # exp1 only
-    elif order>=3: return False
+    # Add additional order restrictions here
+
     else:
       nFracs = (order-1)/2
       nExps = order-nFracs
@@ -70,8 +70,8 @@ def getPdf(model,prefix,funcType,order):
   elif funcType == "PowerLaw":
     # Only odd orders allowed
     if order%2==0: return False
-    # pow1 only
-    elif order>=3: return False
+    # Add additional order restrictions here
+
     else:
       nFracs = (order-1)/2
       nPows = order-nFracs

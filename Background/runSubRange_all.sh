@@ -1,0 +1,10 @@
+apython RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window1_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 70 --nBinsPdf 2800"
+apython RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window2and3_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 155 --nBinsPdf 6200"
+apython RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window4_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 60 --nBinsPdf 2400"
+apython RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window5_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 56 --nBinsPdf 2240"
+
+python RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window1_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 70 --nBinsPdf 700"
+python RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window2and3_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 310 --nBinsPdf 3100"
+python RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window4_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 240 --nBinsPdf 2400"
+python RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_window5_v1.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 280 --nBinsPdf 2800"
+python RunBackgroundScripts_lite.py --inputConfig SubRangeConfigs_AllData/config_fullrange.py --mode fTest --modeOpts "--gofCriteria 0.00 --pvalFTest 1.05 --maxOrder 4 --nBins 680 --nBinsPdf 6800"

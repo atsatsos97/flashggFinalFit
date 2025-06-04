@@ -3,8 +3,8 @@
 backgroundScriptCfg = {
   
   # Setup
-  'inputWSFile':'/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/JUL2024FITWS_SIGEXT/AllData_SlidingWindow_HighGran/ws/10GeV_all2018data.root', # location of 'allData.root' file
-  'cats':'auto', # auto: automatically inferred from input ws
+  'inputWSFile':'/eos/user/a/atsatsos/ULFlashGG_Files/NewReleaseFiles/SEP2024FITWS_SIGEXT/AllData_SlidingWindow/ws/10GeV_all2018data.root', # location of 'allData.root' file
+  'cats':'UntaggedTag_1', # auto: automatically inferred from input ws
   'ext':'lite', # extension to add to output directory
   'year':'2018', # Use merged when merging all years in category (for plots)
   'mass':'10GeV', # Mass point for sliding window

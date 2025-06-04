@@ -6,7 +6,9 @@ Apologies for the lack of documentation for all the different plotting scripts!
 
    0) Make a directory where to work:
 
-   ```mkdir SplusBModels_AllData_cat0```
+   ```
+   mkdir SplusBModels_AllData_cat0
+   ```
 
    ---------------------------------
 

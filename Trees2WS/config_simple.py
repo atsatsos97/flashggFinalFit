@@ -18,5 +18,6 @@ trees2wsCfg = {
 
   # Analysis categories: python list of cats or use 'auto' to extract from input tree
   'cats':'auto'
+  #'cats':['UntaggedTag_0','UntaggedTag_1']
 
 }

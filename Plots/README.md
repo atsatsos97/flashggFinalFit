@@ -4,12 +4,11 @@ Apologies for the lack of documentation for all the different plotting scripts!
 
 ## Final signal+background fit for very low mass analysis
 
-### 0) Make a directory where to work:
+   0) Make a directory where to work:
    -------------------------------
    ```mkdir SplusBModels_AllData_cat0```
 
-
-### 1) Fit the workspace in the datacard
+   1) Fit the workspace in the datacard
    ---------------------------------
    ```
    cd SplusBModels_AllData_cat0
@@ -18,15 +17,16 @@ Apologies for the lack of documentation for all the different plotting scripts!
    combine sliding_50.0GeV_cat0.root -m 50.000 -M MultiDimFit -P r --floatOtherPOIs=1 --freezeParameters MH --saveWorkspace  -n _initialSnapshot --cminDefaultMinimizerStrategy 0 --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2
    ```
 
-
-### 2) Throw toys starting from the snapshot of previous step
+   2) Throw toys starting from the snapshot of previous step
    ------------------------------------------------------
    ```
    cd ..
-   python makeToys.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH50.root --loadSnapshot MultiDimFit --ext _AllData_cat0 --nToys 1000 --dryRun --batch condor
+   python makeToys.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH50.root --loadSnapshot MultiDimFit --ext _AllData_cat0 --nToys 500 --dryRun --batch condor
+   cd SplusBModels_AllData_cat0/toys/jobs/
+   condor_submit sub_toys.sub
    ```
 
-### 3) Plotting step: 
+   3) Plotting step: 
    --------------
    ```
    python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH50.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 50  --unblind  --doBkgRenormalization --nBins 60 --doZeroes --doBands

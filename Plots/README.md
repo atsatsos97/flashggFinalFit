@@ -39,3 +39,27 @@ Apologies for the lack of documentation for all the different plotting scripts!
    ```
    python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH50.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 50  --unblind  --doBkgRenormalization --nBins 60 --doZeroes --doBands
    ```
+   --------------
+
+# Commands for making plotting figures:
+
+Note that connection to the slc7 Singularity container and the flashggFinalFit environment need to be set up before running these commands!
+
+## Full Range Plot
+
+   ```
+   python makeSplusBPlotFullRange.py
+   ```
+   --------------
+
+## Plots for certain mass points in each window (after toys are created for each one)
+
+   ```
+   python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH13.6.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 13.6 --unblind --doBkgRenormalization --nBins 70 --pdfNBins 2800 --doZeroes --doBands
+
+   python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH12.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 12 --unblind --doBkgRenormalization --nBins 70 --pdfNBins 2800 --doZeroes --doBands
+   python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH35.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 35 --unblind --doBkgRenormalization --nBins 155 --pdfNBins 6200 --doZeroes --doBands
+   python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH46.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 46 --unblind --doBkgRenormalization --nBins 60 --pdfNBins 2400 --doZeroes --doBands
+   python makeSplusBModelPlot.py --inputWSFile SplusBModels_AllData_cat0/higgsCombine_initialSnapshot.MultiDimFit.mH64.5.root --loadSnapshot MultiDimFit --cats all --ext _AllData_cat0 --mass 64.5 --unblind --doBkgRenormalization --nBins 56 --pdfNBins 2240 --doZeroes --doBands
+   ```
+   --------------

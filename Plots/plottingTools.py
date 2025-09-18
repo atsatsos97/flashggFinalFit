@@ -185,10 +185,11 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     leg.AddEntry(hS['pdfNBins'],"S model","fl")
   if options.doBands:
     leg.AddEntry(gr_1sig,"#pm1 #sigma","F")
-    leg.AddEntry(gr_2sig,"#pm2 #sigma","F")
+    leg.AddEntry(gr_2sig,"#pm2 #kern[-0.23]{#sigma}","F")
   leg.Draw("Same")
   # Set pdf style
   if options.unblind:
+    print "Unblinded drawing..."
     hSB['pdfNBins'].SetLineWidth(3)
     hSB['pdfNBins'].SetLineColor(kBlue)
     hSB['pdfNBins'].Draw("Hist same")
@@ -199,6 +200,7 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     hB['pdfNBins'].Draw("Hist same")
     hB['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hB.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   else:
+    print "Blinded drawing..."
     hS['pdfNBins'].SetLineWidth(3)
     hS['pdfNBins'].SetLineColor(9)
     hS['pdfNBins'].SetFillColor(38)
@@ -208,6 +210,7 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     hS['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hS.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
     hB['pdfNBins'].SetLineWidth(3)
     hB['pdfNBins'].SetLineColor(2)
+    hB['pdfNBins'].SetLineStyle(2)
     hB['pdfNBins'].Draw("Hist same ")
     hB['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hB.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   # Set data style
@@ -265,8 +268,8 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
   h_axes_ratio.Reset()
   #h_axes_ratio.SetMaximum(max((hDr.GetMaximum()+hDr.GetBinError(hDr.GetMaximumBin()))*1.7,hSr.GetMaximum()*1.4))
   #h_axes_ratio.SetMinimum((hDr.GetMinimum()-hDr.GetBinError(hDr.GetMinimumBin()))*1.3)
-  h_axes_ratio.SetMaximum(190)
-  h_axes_ratio.SetMinimum(-140)
+  h_axes_ratio.SetMaximum(115)
+  h_axes_ratio.SetMinimum(-115)
   h_axes_ratio.SetTitle("")
   #h_axes_ratio.GetXaxis().SetTitleSize(0.06*padSizeRatio)
   h_axes_ratio.GetXaxis().SetTitleSize(0.07*padSizeRatio)
@@ -312,6 +315,7 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     hSr.Draw("Hist samef")
     hSr.SaveAs("./SplusBModels%s/%s_%s_%s_hSr.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
     hBr.SetLineWidth(3)
+    hBr.SetLineStyle(2)
     hBr.SetLineColor(2)
     hBr.Draw("Hist same")
     hBr.SaveAs("./SplusBModels%s/%s_%s_%s_hBr.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
@@ -327,12 +331,12 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
   lat3.SetTextAlign(33)
   lat3.SetNDC(1)
   lat3.SetTextSize(0.060*padSizeRatio)
-  lat3.DrawLatex(0.93,0.90,"B component subtracted from data")
+  #lat3.DrawLatex(0.93,0.90,"B component subtracted from data")
 
   # Save canvas
   canv.Update()
   canv.SaveAs("./SplusBModels%s/%s_%s_%s.png"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   canv.SaveAs("./SplusBModels%s/%s_%s_%s.pdf"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
-  canv.SaveAs("/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/%s_%s_%s_FINAL.png"%(cat,options.xvar.split(",")[0],options.mass))
-  canv.SaveAs("/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/%s_%s_%s_FINAL.pdf"%(cat,options.xvar.split(",")[0],options.mass))
+  canv.SaveAs("/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/%s_%s_%s_CWR.png"%(cat,options.xvar.split(",")[0],options.mass))
+  canv.SaveAs("/eos/user/a/atsatsos/www/SEP2024FinalFits/AllData_SubRange_Envelope/%s_%s_%s_CWR.pdf"%(cat,options.xvar.split(",")[0],options.mass))
   #raw_input("Press any key to continue...")

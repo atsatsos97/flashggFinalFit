@@ -184,20 +184,20 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     leg.AddEntry(hB['pdfNBins'],"B fit","l")
     leg.AddEntry(hS['pdfNBins'],"S model","fl")
   if options.doBands:
-    leg.AddEntry(gr_1sig,"#pm1 #sigma","F")
-    leg.AddEntry(gr_2sig,"#pm2 #kern[-0.23]{#sigma}","F")
+    leg.AddEntry(gr_1sig,"#pm1 #sigma (B-only)","F")
+    leg.AddEntry(gr_2sig,"#pm2 #kern[-0.23]{#sigma} (B-only)","F")
   leg.Draw("Same")
   # Set pdf style
   if options.unblind:
     print "Unblinded drawing..."
-    hSB['pdfNBins'].SetLineWidth(3)
+    hSB['pdfNBins'].SetLineWidth(2)
     hSB['pdfNBins'].SetLineColor(kBlue)
-    hSB['pdfNBins'].Draw("Hist same")
+    hSB['pdfNBins'].Draw("Hist same c")
     hSB['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hSB.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
-    hB['pdfNBins'].SetLineWidth(3)
+    hB['pdfNBins'].SetLineWidth(2)
     hB['pdfNBins'].SetLineColor(kBlue)
     hB['pdfNBins'].SetLineStyle(2)
-    hB['pdfNBins'].Draw("Hist same")
+    hB['pdfNBins'].Draw("Hist same c")
     hB['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hB.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   else:
     print "Blinded drawing..."
@@ -206,12 +206,12 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     hS['pdfNBins'].SetFillColor(38)
     hS['pdfNBins'].SetFillStyle(1001)
     hS['pdfNBins'].GetXaxis().SetRangeUser(blindingRegion[0],blindingRegion[1])
-    hS['pdfNBins'].Draw("Hist same f")
+    #hS['pdfNBins'].Draw("Hist same f")
     hS['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hS.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
     hB['pdfNBins'].SetLineWidth(3)
     hB['pdfNBins'].SetLineColor(2)
     hB['pdfNBins'].SetLineStyle(2)
-    hB['pdfNBins'].Draw("Hist same ")
+    #hB['pdfNBins'].Draw("Hist same ")
     hB['pdfNBins'].SaveAs("./SplusBModels%s/%s_%s_%s_hB.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   # Set data style
   hD.SetMarkerStyle(20)
@@ -297,14 +297,14 @@ def makeSplusBPlot(workspace,hD,hSB,hB,hS,hDr,hBr,hSr,cat,options,dB=None,reduce
     gr_1sig_r.SaveAs("./SplusBModels%s/%s_%s_%s_1sig_r.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   # Set pdf style
   if options.unblind:
-    hSr.SetLineWidth(3)
+    hSr.SetLineWidth(2)
     hSr.SetLineColor(kBlue)
-    hSr.Draw("Hist same")
+    hSr.Draw("Hist same c")
     hSr.SaveAs("./SplusBModels%s/%s_%s_%s_hSr.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
-    hBr.SetLineWidth(3)
+    hBr.SetLineWidth(2)
     hBr.SetLineStyle(2)
     hBr.SetLineColor(kBlue)
-    hBr.Draw("Hist same")
+    hBr.Draw("Hist same c")
     hBr.SaveAs("./SplusBModels%s/%s_%s_%s_hBr.root"%(options.ext,cat,options.xvar.split(",")[0],options.mass))
   else:
     hSr.SetLineWidth(3)

@@ -399,8 +399,12 @@ for cidx in range(len(cats)):
   # Delete histograms
   h_data.Delete()
   h_data_ratio.Delete()
-  for h in h_sbpdf.itervalues(): h.Delete()
-  for h in h_bpdf.itervalues(): h.Delete()
+  for h in h_sbpdf.itervalues():
+    print h
+    h.Delete()
+  for h in h_bpdf.itervalues():
+    print h
+    h.Delete()
   h_bpdf_ratio.Delete()
   for h in h_spdf.itervalues(): h.Delete()
   h_spdf_ratio.Delete()

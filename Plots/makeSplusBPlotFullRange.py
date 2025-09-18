@@ -22,10 +22,10 @@ def SetErrors(binEnd,shift,scale,h1Epre,h1Erpre,h2Epre,h2Erpre,h1E,h1Er,h2E,h2Er
 hD1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hD.root","READ")
 hD1 = hD1f.Get("h_data_cat0__CMS_hgg_mass")
 
-hS1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hSB.root","READ")
-hS1 = hS1f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
-hSr1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hSr.root","READ")
-hSr1 = hSr1f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hS1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hSB.root","READ")
+#hS1 = hS1f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hSr1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hSr.root","READ")
+#hSr1 = hSr1f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
 
 hB1f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_12_hB.root","READ")
 hB1 = hB1f.Get("h_b_pdfNBins_cat0__CMS_hgg_mass")
@@ -51,7 +51,7 @@ hDr1.Add(hB1)
 hDr1.Scale(-0.025)
 hDr1.Add(hD1,1)
 
-for h in [hD1,hDr1,hB1,hBr1,hS1,hSr1]:
+for h in [hD1,hDr1,hB1,hBr1]:#,hS1,hSr1]:
   h.GetXaxis().SetRangeUser(10.0,14.5)
   h.Scale(1.0/h.GetBinWidth(0))
 
@@ -61,10 +61,10 @@ SetErrors(46,10,10,h1E1pre,h1Er1pre,h2E1pre,h2Er1pre,h1E1,h1Er1,h2E1,h2Er1)
 hD2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hD.root","READ")
 hD2 = hD2f.Get("h_data_cat0__CMS_hgg_mass")
 
-hS2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hSB.root","READ")
-hS2 = hS2f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
-hSr2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hSr.root","READ")
-hSr2 = hSr2f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hS2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hSB.root","READ")
+#hS2 = hS2f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hSr2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hSr.root","READ")
+#hSr2 = hSr2f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
 
 hB2f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_33_hB.root","READ")
 hB2 = hB2f.Get("h_b_pdfNBins_cat0__CMS_hgg_mass")
@@ -90,7 +90,7 @@ hDr2.Add(hB2)
 hDr2.Scale(-0.025)
 hDr2.Add(hD2,1)
 
-for h in [hD2,hDr2,hB2,hBr2,hS2,hSr2]:
+for h in [hD2,hDr2,hB2,hBr2]:#,hS2,hSr2]:
   h.GetXaxis().SetRangeUser(14.5,40.0)
   h.Scale(1.0/h.GetBinWidth(0))
 
@@ -101,10 +101,10 @@ SetErrors(129,7,5,h1E2pre,h1Er2pre,h2E2pre,h2Er2pre,h1E2,h1Er2,h2E2,h2Er2)
 hD3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hD.root","READ")
 hD3 = hD3f.Get("h_data_cat0__CMS_hgg_mass")
 
-hS3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hSB.root","READ")
-hS3 = hS3f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
-hSr3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hSr.root","READ")
-hSr3 = hSr3f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hS3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hSB.root","READ")
+#hS3 = hS3f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hSr3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hSr.root","READ")
+#hSr3 = hSr3f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
 
 hB3f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_50_hB.root","READ")
 hB3 = hB3f.Get("h_b_pdfNBins_cat0__CMS_hgg_mass")
@@ -130,7 +130,7 @@ hDr3.Add(hB3)
 hDr3.Scale(-0.025)
 hDr3.Add(hD3,1)
 
-for h in [hD3,hDr3,hB3,hBr3,hS3,hSr3]:
+for h in [hD3,hDr3,hB3,hBr3]:#,hS3,hSr3]:
   h.GetXaxis().SetRangeUser(40.0,54.5)
   h.Scale(1.0/h.GetBinWidth(0))
 
@@ -140,10 +140,10 @@ SetErrors(37,9,2.5,h1E3pre,h1Er3pre,h2E3pre,h2Er3pre,h1E3,h1Er3,h2E3,h2Er3)
 hD4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hD.root","READ")
 hD4 = hD4f.Get("h_data_cat0__CMS_hgg_mass")
 
-hS4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hSB.root","READ")
-hS4 = hS4f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
-hSr4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hSr.root","READ")
-hSr4 = hSr4f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hS4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hSB.root","READ")
+#hS4 = hS4f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
+#hSr4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hSr.root","READ")
+#hSr4 = hSr4f.Get("h_sb_pdfNBins_cat0__CMS_hgg_mass")
 
 hB4f = ROOT.TFile("./SplusBModels_AllData_cat0/BOnly/cat0_CMS_hgg_mass_68_hB.root","READ")
 hB4 = hB4f.Get("h_b_pdfNBins_cat0__CMS_hgg_mass")
@@ -169,7 +169,7 @@ hDr4.Add(hB4)
 hDr4.Scale(-0.025)
 hDr4.Add(hD4,1)
 
-for h in [hD4,hDr4,hB4,hBr4,hS4,hSr4]:
+for h in [hD4,hDr4,hB4,hBr4]:#,hS4,hSr4]:
   h.GetXaxis().SetRangeUser(54.5,70.0)
   h.Scale(1.0/h.GetBinWidth(0))
 
@@ -260,11 +260,11 @@ for h1E in [h1E1,h1E2,h1E3,h1E4]:
 #  hS.Draw("Hist same ][")
 #  print hS.GetMaximum()
 for hB in [hB1,hB2,hB3,hB4]:
-  hB.SetLineWidth(2)
+  hB.SetLineWidth(1)
   hB.SetLineColor(kBlue)
   hB.Scale(0.025)
-  hB.SetLineStyle(2)
-  hB.Draw("Hist same ][")
+  hB.SetLineStyle(1)
+  hB.Draw("Hist same c ][")
   print hB.GetMaximum()
 # Set data style
 for hD in [hD1,hD2,hD3,hD4]:
@@ -293,8 +293,8 @@ leg.SetTextSize(0.06)
 leg.AddEntry(hD1,"Data","ep")
 #leg.AddEntry(hS1,"S+B fit","l")
 leg.AddEntry(hB1,"B component of S+B fit","l")
-leg.AddEntry(h1E1,"#pm1 #sigma","F")
-leg.AddEntry(h2E1,"#pm2 #kern[-0.26]{#sigma}","F")
+leg.AddEntry(h1E1,"#pm1 #sigma (B-only)","F")
+leg.AddEntry(h2E1,"#pm2 #kern[-0.26]{#sigma} (B-only)","F")
 leg.Draw("Same")
 
 # Add TLatex to plot
@@ -381,10 +381,10 @@ for h1Er in [h1Er1,h1Er2,h1Er3,h1Er4]:
 #  hSr.SetLineColor(kBlue)
 #  hSr.Draw("Hist same ][")
 for hBr in [hBr1,hBr2,hBr3,hBr4]:
-  hBr.SetLineWidth(2)
-  hBr.SetLineStyle(2)
+  hBr.SetLineWidth(1)
+  hBr.SetLineStyle(1)
   hBr.SetLineColor(kBlue)
-  hBr.Draw("Hist same ][")
+  hBr.Draw("Hist same c ][")
 # Set data style
 for hDr in [hDr1,hDr2,hDr3,hDr4]:
   hDr.SetMarkerStyle(20)
